@@ -1,0 +1,24 @@
+print("""
+╔═╗┌┐┌   ╦ ╦┌─┐┌─┐┬─┐
+║ ║│││───║ ║└─┐├┤ ├┬┘
+╚═╝┘└┘oo ╚═╝└─┘└─┘┴└─""")
+import time,os,requests,json
+
+i = 0
+str=""
+if input("password: ")=="1111":
+ for i  in range(20) :
+    i=i+1
+    os.system("clear")
+    str=str+"██"  
+    print("["+str+"]")
+    time.sleep(0.01)
+ 
+    if i==20:
+      DATA = requests.get("http://ip-api.com/json/").json()
+      print("""              .-. .-. 
+               |  |-' 
+              `-' '   
+        """,DATA["query"])  
+    
+                                                                                                                     

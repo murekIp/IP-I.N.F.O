@@ -1,0 +1,40 @@
+import os,requests,json
+from bs4 import BeautifulSoup as parseHTML
+
+os.system("clear")
+
+print("\33[4m"+""" 
+    888  888 88e    888       Y88b  Y88      888'Y88        e88 88e      
+    888  888 888D   888        Y88b  Y8      888 ,'Y       d88   88b   
+    888  888 88"    888       b Y88b  Y      888C8        C88     88D
+    888  888        888  d8b  8b  Y88b  d8b  888 "   d8b   Y8     8P 
+    888  888        888  Y8P  88b  Y88b Y8P  888     Y8P    "88 88"  
+    """+"\33[0m")
+
+IPTray=input("local ip / new ip [me(local ip)/<you ip>]-- ")
+if(IPTray=="me"):
+ IP=requests.get("http://ip-api.com/json/").json() #IP Local Getting API
+
+if(IPTray!="me"):
+ IP=requests.get("http://ip-api.com/json/"+IPTray).json() #IP Getting API
+
+
+
+print(IP["query"],"   IP |") 
+API="https://api.hackertarget.com/mtr/?q="+IP["query"] # Trace Route API
+
+USERA = {'accept': '*/*',
+           'user-agent': 'Mozilla/5.0(X11;Debian x86_64...)Geco/20100101 Firefox/60.0'}
+
+
+Yes=input("Y Want Start TRC?():[Yes/No]--")
+
+ 
+if(Yes=="Yes"):
+    print("API TRACEROUTE START NOT WORRY  It MAY TAKE TIME :):)")
+    session = requests.session()
+    request = session.get(API, headers=USERA)
+    HTMLREAD = parseHTML(request.content, 'html.parser')
+    print(HTMLREAD)
+if(Yes=="No"):
+    exit()
